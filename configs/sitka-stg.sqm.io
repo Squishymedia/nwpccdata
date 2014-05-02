@@ -1,12 +1,12 @@
 server {
 	listen 80;
-	server_name www.squishy.sitkatech.com;
-	rewrite ^/(.*) http://squishy.sitkatech.com/$1 permanent;
+	server_name sitka-stg.sqm.io;
+	rewrite ^/(.*) http://sitka-stg.sqm.io/$1 permanent;
 	}
 
 server {
 	listen 80;
-	server_name squishy.sitkatech.com;
+	server_name sitka-stg.sqm.io;
         root /var/django/npc/;
 	access_log off;
 	error_log /var/django/npc.error.log;

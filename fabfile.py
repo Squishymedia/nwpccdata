@@ -25,14 +25,14 @@ def web_release():
 def web_create_site():
     put('configs/django-npc', '/tmp/django-npc')
     put('configs/fastcgi.conf', '/tmp/fastcgi.conf')
-    put('configs/squishy.sitkatech.com', '/tmp/squishy.sitkatech.com')
+    put('configs/sitka-stg.sqm.io', '/tmp/sitka-stg.sqm.io')
     sudo('mv /tmp/django-npc /etc/init.d/')
     sudo('chmod 755 /etc/init.d/django-npc')
     sudo('mkdir -p /var/django/run/')
     sudo('touch /var/django/run/' + app_name + '.pid')
     sudo('mv /tmp/fastcgi.conf /etc/nginx/')
-    sudo('mv /tmp/squishy.sitkatech.com /etc/nginx/sites-available/')
-    sudo('ln -fs /etc/nginx/sites-available/squishy.sitkatech.com /etc/nginx/sites-enabled/squishy.sitkatech.com')
+    sudo('mv /tmp/sitka-stg.sqm.io /etc/nginx/sites-available/')
+    sudo('ln -fs /etc/nginx/sites-available/sitka-stg.sqm.io /etc/nginx/sites-enabled/sitka-stg.sqm.io')
     sudo('/etc/init.d/nginx stop')
     sudo('/etc/init.d/django-npc stop')
     # Give the CGI process a chance to stop before starting again.

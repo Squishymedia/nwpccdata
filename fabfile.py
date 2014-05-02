@@ -1,7 +1,7 @@
 from fabric.api import env, local, run, put, get, cd, sudo
 import datetime
 
-env.hosts = ['jasonc@squishy.sitkatech.com:22']
+env.hosts = ['jesse@sitka-stg.sqm.io:22421']
 code_dir = '/var/django/'
 app_name = 'npc'
 db_name = 'db.sqlite3'

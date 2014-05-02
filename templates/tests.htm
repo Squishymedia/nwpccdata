@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>NPC Data - Tests</title>
+<script>
+function getSets() {
+  var req = new XMLHttpRequest();
+  req.open("GET", '/sets/', false);
+  req.send(null);
+  var ptag = document.createElement('p');
+  ptag.innerHTML = req.response;
+  var element = document.getElementById('getSetsData');
+  element.appendChild(ptag);
+}
+
+function getSet(sid) {
+  var req = new XMLHttpRequest();
+  req.open("GET", '/sets/' + sid + '/', false);
+  req.send(null);
+  var ptag = document.createElement('p');
+  ptag.innerHTML = req.response;
+  var element = document.getElementById('getSetData');
+  element.appendChild(ptag);
+}
+
+function getVersion(sid, vid) {
+  var req = new XMLHttpRequest();
+  req.open("GET", '/sets/' + sid + '/' + vid + '/', false);
+  req.send(null);
+  var ptag = document.createElement('p');
+  ptag.innerHTML = req.response;
+  var element = document.getElementById('getVersionData');
+  element.appendChild(ptag);
+}
+
+function getCurrentSet(sid) {
+  var req = new XMLHttpRequest();
+  req.open("GET", '/sets/' + sid + '/current/', false);
+  req.send(null);
+  var ptag = document.createElement('p');
+  ptag.innerHTML = req.response;
+  var element = document.getElementById('getCurrentSetData');
+  element.appendChild(ptag);
+}
+
+function getLatestSet(sid) {
+  var req = new XMLHttpRequest();
+  req.open("GET", '/sets/' + sid + '/latest/', false);
+  req.send(null);
+  var ptag = document.createElement('p');
+  ptag.innerHTML = req.response;
+  var element = document.getElementById('getLatestSetData');
+  element.appendChild(ptag);
+}
+
+function approveRevision(sid, vid) {
+  var req = new XMLHttpRequest();
+  req.open("POST", '/sets/' + sid + '/' + vid + '/approve/', false);
+  req.send(null);
+  var ptag = document.createElement('p');
+  ptag.innerHTML = req.response;
+  var element = document.getElementById('approveRevisionData');
+  element.appendChild(ptag);
+}
+
+function newXLS(sid) {
+  var req = new XMLHttpRequest();
+  req.open("POST", '/sets/' + sid + '/new_xls/', false);
+  req.send(null);
+  var ptag = document.createElement('p');
+  ptag.innerHTML = req.response;
+  var element = document.getElementById('newXLSData');
+  element.appendChild(ptag);
+}
+</script>
+</head>
+<body>
+<h1>Test code for the NPC REST API</h1>
+<h3>View page source for code examples. Examples are pure JavaScript with no 3rd-party libraries. Only tested with Firefox and Internet Explorer 11, but should work in all modern browsers.</h3>
+<h4>Get Data Set List</h4>
+<p>GET /sets/</p>
+<a href="javascript:getSets();">Go</a>
+<p id="getSetsData"></p>
+<h4>Get Specific Data Set Info</h4>
+<p>GET /sets/:sid/</p>
+<a href="javascript:getSet(1);">Go</a>
+<p id="getSetData"></p>
+<h4>Get Data For A Specific Data Set Revision <em>(WARNING: MAY RETURN LOTS OF DATA)</em></h4>
+<p>GET /sets/:sid/:vid/</p>
+<a href="javascript:getVersion(1, 6);">Go</a>
+<p id="getVersionData"></p>
+<h4>Get The Current Data Set <em>(WARNING: MAY RETURN LOTS OF DATA)</em></h4>
+<p>GET /sets/:sid/current/</p>
+<a href="javascript:getCurrentSet(1);">Go</a>
+<p id="getCurrentSetData"></p>
+<h4>Get The Latest Data Set <em>(WARNING: MAY RETURN LOTS OF DATA)</em></h4>
+<p>GET /sets/:sid/latest/</p>
+<a href="javascript:getLatestSet(1);">Go</a>
+<p id="getLatestSetData"></p>
+<h4>Approve A Data Set Revision As Current</h4>
+<p>POST /sets/:sid/:vid/approve/</p>
+<a href="javascript:approveRevision(1, 4);">Set as #4</a>
+<a href="javascript:approveRevision(1, 5);">Set as #5</a>
+<a href="javascript:approveRevision(1, 6);">Set as #6</a>
+<a href="javascript:approveRevision(1, 7);">Set as #7</a>
+<a href="javascript:approveRevision(1, 8);">Set as #8</a>
+<p id="approveRevisionData"></p>
+<h4>Upload A New Excel File To The Specified Data Set</h4>
+<p>POST /sets/:sid/new_xls/</p>
+<p><em>This form posts a new data set to set ID #1.</em></p>
+<form enctype="multipart/form-data" action="/sets/1/new_xls/" method="post">
+<table>
+<tr><td>Select a file:</td><td><input type="file" name="file" /></td></tr>
+<tr><td>Sheet # That Contains the Data:</td><td><input type="text" name="sheet" value="5" /> (numeric)</td></tr>
+<tr><td>Header Row # (0 for no header):</td><td><input type="text" name="header_row" value="7" /> (numeric)</td></tr>
+<tr><td>Revision comment:</td><td><input type="text" name="revision_comment" /></td></tr>
+<tr><td>Should this become the new canonical version?</td><td><input type="checkbox" name="make_canonical" value="True"></td></tr>
+<tr><td colspan="2"><em>Be patient with the upload - it may take around 20 seconds or so to import all of the data.</em></td></tr>
+<tr><td colspan="2"><input type="submit" value="Upload" /></td></tr>
+</table>
+</form>
+<!--<a href="javascript:newXLS(1);">Go</a>-->
+<p id="newXLSData"></p>
+<p><em>This page and related server-side REST API code created by <a href="http://sitkatech.com">Sitka Technology Group, LLC</a> for <a href="http://squishymedia.com">Squishy Media</a>.</em></p>
+</body>
+</html>

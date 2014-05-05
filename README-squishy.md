@@ -1,11 +1,13 @@
 # Squishy-specific configs
 
 ## Missing modules
-```sudo pip install djangorestframework
+```
+sudo pip install djangorestframework
 sudo pip install markdown
 sudo pip install django-filter
 sudo pip install flup
-sudo pip install openpyxl```
+sudo pip install openpyxl
+```
 
 ## modified files
 ### config/django-npc
@@ -14,11 +16,6 @@ Complete rewrite, as the original was Debian/Ubuntu format
 ### configs/sitka-stg.sqm.io
 Fix logging, root paths
 ```diff
-diff --git a/configs/sitka-stg.sqm.io b/configs/sitka-stg.sqm.io
-index b05afa4..9936251 100755
---- a/configs/sitka-stg.sqm.io
-+++ b/configs/sitka-stg.sqm.io
-@@ -1,23 +1,26 @@
  server {
         listen 80;
 -       server_name sitka-stg.sqm.io;
@@ -56,17 +53,6 @@ index b05afa4..9936251 100755
 ### fabfile.py
 Fixed env.hosts to use logged-in user
 ```diff
-diff --git a/fabfile.py b/fabfile.py
-index 72db642..f9882aa 100755
---- a/fabfile.py
-+++ b/fabfile.py
-@@ -1,7 +1,7 @@
- from fabric.api import env, local, run, put, get, cd, sudo
- import datetime
-
 -env.hosts = ['jesse@sitka-stg.sqm.io:22421']
 +env.hosts = ['sitka-stg.sqm.io:22421']
- code_dir = '/var/django/'
- app_name = 'npc'
- db_name = 'db.sqlite3'
 ```

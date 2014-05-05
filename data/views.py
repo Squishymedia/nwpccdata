@@ -15,22 +15,17 @@ import json
 class DataSetViewSet(viewsets.ModelViewSet):
     model = DataSet
 
-    def list(self, request):
-        queryset = DataSet.objects.all()
-        serializer = serializers.get_serializer("xml")
-        xml_serializer = XMLSerializer()
-        xml_serializer.serialize(queryset)
-        return Response(xml_serializer.getvalue())
+    def list(self, request):        
+        data = serializers.serialize("xml", DataSet.objects.all())
+        return Response(data)
 
     def detail(self, request, id=None):
         try:
             queryset = DataSet.objects.get(id=id)
         except ObjectDoesNotExist:
             raise Http404
-        serializer = serializers.get_serializer("xml")
-        xml_serializer = XMLSerializer()
-        xml_serializer.serialize(queryset)
-        return Response(xml_serializer.getvalue())
+        serializer = DataSetSerializer(queryset)
+        return Response(serializer.data)
 
 class DataSetRevisionViewSet(viewsets.ModelViewSet):
     model = DataSetRevision

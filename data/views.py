@@ -17,8 +17,10 @@ class DataSetViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         queryset = DataSet.objects.all()
-        serializer = ShortDataSetSerializer(queryset, many=True)
-        return Response(serializer.data)
+        serializer = serializers.get_serializer("xml")
+        xml_serializer = XMLSerializer()
+        xml_serializer.serialize(queryset)
+        return Response(xml_serializer.getvalue())
 
     def detail(self, request, id=None):
         try:

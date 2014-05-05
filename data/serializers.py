@@ -1,6 +1,5 @@
 from models import DataSet, DataSetRevision
 from rest_framework import serializers
-import json
 
 class ShortDataSetRevisionSerializer(serializers.ModelSerializer):
 

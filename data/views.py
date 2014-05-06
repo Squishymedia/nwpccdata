@@ -21,10 +21,10 @@ class DataSetViewSet(viewsets.ModelViewSet):
 
     def detail(self, request, id=None):
         try:
-            queryset = DataSet.objects.get(id=id)
+            data = serializers.serialize("xml", DataSet.objects.get(id=id))
         except ObjectDoesNotExist:
             raise Http404
-        data = serializers.serialize("xml", DataSetSerializer(queryset))
+        
         return Response(data)
 
 class DataSetRevisionViewSet(viewsets.ModelViewSet):

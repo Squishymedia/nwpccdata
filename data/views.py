@@ -24,8 +24,8 @@ class DataSetViewSet(viewsets.ModelViewSet):
             queryset = DataSet.objects.get(id=id)
         except ObjectDoesNotExist:
             raise Http404
-        serializer = DataSetSerializer(queryset)
-        return Response(serializer.data)
+        data = serializers.serialize("xml", DataSetSerializer(queryset))
+        return Response(data)
 
 class DataSetRevisionViewSet(viewsets.ModelViewSet):
     model = DataSetRevision

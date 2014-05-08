@@ -53,7 +53,12 @@ ROOT_URLCONF = 'npc.urls'
 
 WSGI_APPLICATION = 'npc.wsgi.application'
 
-REST_FRAMEWORK = { 'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.XMLRenderer',) }
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.XMLRenderer',
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
 
 TEMPLATE_DIRS = (
     '/var/django/npc/templates/',

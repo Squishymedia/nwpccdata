@@ -135,7 +135,7 @@ def post_new_xls(request, id):
         revision.save()
         message = 'A new data set has been created for set ' + str(id) + ' as revision ' + str(revision.revision_number) + '.'
         if current:
-            revision.dataset.current_revision = revision
+            revision.dataset.current_revision = revision.revision_number
             revision.dataset.save()
             message += ' This data set has been made the new canonical data set.'
         return HttpResponse('{"message":' + message + '}', status=201) # Created

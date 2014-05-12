@@ -14,7 +14,7 @@ server {
 
         location ~ ^/admin/static/ {
             #root /usr/local/lib/python2.7/dist-packages/django/contrib/;
-			root /usr/lib/python2.6/site-packages/django/contrib/;
+			root /usr/lib/python2.7/site-packages/django/contrib/;
         }
 
         location ~* ^.+\.(JPG|JPEG|jpg|jpeg|gif|css|png|js|ico|pdf|zip|exe|wav|gz|bmp|tgz|gz|rar|txt|tar|rtf)$ {

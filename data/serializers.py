@@ -12,7 +12,8 @@ class DataSetRevisionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DataSetRevision
-        fields = ('dataset', 'revision_number', 'created', 'user', 'comment', 'column_names', 'data')
+        #fields = ('dataset', 'revision_number', 'created', 'user', 'comment', 'column_names', 'data')
+	fields = ('column_names', 'data')
 
 class DataSetSerializer(serializers.ModelSerializer):
     revisions = ShortDataSetRevisionSerializer(source='datasetrevision_set', many=True)

@@ -98,7 +98,7 @@ def post_new_xls(request, id):
         f.write(filedata)
         f.close()
         sheet = load_workbook(filename=r'/tmp/tempfile.tmp')
-        sheet_ranges = sheet[sheet_number]
+        sheet_ranges = sheet[sheet_number - 1]
         sheet_names = sheet.get_sheet_names()
         print 'Workbook: ' + str(sheet)
         print 'Projects Sheet: ' + str(sheet_ranges)        

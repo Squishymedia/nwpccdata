@@ -104,8 +104,8 @@ def post_new_xls(request, id):
         print 'Projects Sheet: ' + str(sheet_ranges)        
         print 'Named Ranges: ' + str(sheet.get_named_ranges())
         print 'Sheet Names: ' + str(sheet.get_sheet_names())
-        print 'Sheet 2: ' + sheet_names[1]
-        print 'Get sheet 2: ' + str(sheet[sheet_names[1]])
+        //print 'Sheet 2: ' + sheet_names[1]
+        //print 'Get sheet 2: ' + str(sheet[sheet_names[1]])
         print 'Sheet dimensions: ' + str(sheet_ranges.calculate_dimension())
         columns = sheet_ranges.get_highest_column()
         print 'Highest column: ' + str(columns)

@@ -98,7 +98,7 @@ def post_new_xls(request, id):
         f.write(filedata)
         f.close()
         sheet = load_workbook(filename=r'/tmp/tempfile.tmp')
-        sheet_ranges = sheet['Projects']
+        sheet_ranges = sheet[sheet_number]
         sheet_names = sheet.get_sheet_names()
         print 'Workbook: ' + str(sheet)
         print 'Projects Sheet: ' + str(sheet_ranges)        
@@ -118,7 +118,7 @@ def post_new_xls(request, id):
                 thisrow.append( sheet_ranges.cell(column=x, row=y).value )
             rowdata.append(thisrow)
         revision = DataSetRevision()
-        revision.dataset = DataSet.objects.get(id=1)
+        revision.dataset = DataSet.objects.get(id=id)
         revisions = DataSetRevision.objects.filter(dataset=revision.dataset).order_by('-revision_number')
         if revisions.count() > 0:
             revision.revision_number = revisions[0].revision_number + 1

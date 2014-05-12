@@ -81,13 +81,13 @@ def post_new_xls(request, id):
     if not (request.method == 'POST'):
         return HttpResponseForbidden('{"error": "GET not allowed, POST only."}')
     if request.method == 'POST':
-        sheet_number = int(request.POST.get('sheet', default=1))
+        sheet_name = str(request.POST.get('sheet', default='Projects'))
         header_row = int(request.POST.get('header_row', default=1))
         comment = request.POST.get('revision_comment', default='')
         current = request.POST.get('make_canonical', default=False)
         # There is no security in this application. That will needed to be added if future revisions are created.
         user = request.POST.get('user', default='Anonymous')
-        print 'Sheet Number: ' + str(sheet_number) + ', Header Row: ' + str(header_row) + ', User: ' + user + ', Comment: ' + comment + ', Current: ' + str(current)
+        print 'Sheet Name: ' + str(sheet_name) + ', Header Row: ' + str(header_row) + ', User: ' + user + ', Comment: ' + comment + ', Current: ' + str(current)
         print 'Files: '
         print str(request.FILES)
         file = request.FILES['file']
@@ -98,7 +98,7 @@ def post_new_xls(request, id):
         f.write(filedata)
         f.close()
         sheet = load_workbook(filename=r'/tmp/tempfile.tmp')
-        sheet_ranges = sheet[sheet_number - 1]
+        sheet_ranges = sheet[sheet_name]
         sheet_names = sheet.get_sheet_names()
         print 'Workbook: ' + str(sheet)
         print 'Projects Sheet: ' + str(sheet_ranges)        

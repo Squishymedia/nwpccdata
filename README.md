@@ -11,13 +11,13 @@ script command.
 
 Generally, first-time deployment is done like this:
 
-fab server_prerequisites
+```fab server_prerequisites
 fab web_create_site
-fab web_release
+fab web_release```
 
 Subsequent deployments will just use:
 
-fab web_release
+```fab web_release```
 
 This hasn't been tested very thoroughly, so it's possible you might have make some
 adjustments.
@@ -28,6 +28,6 @@ it uses mine right now.
 Another thing that may come up: some default installations of Nginx don't accept
 files more than 1MB. In that case, edit /etc/nginx.conf and set this:
 
-client_max_body_size 5M;
+```client_max_body_size 5M;```
 
 - Jason Champion

@@ -11,9 +11,11 @@ script command.
 
 Generally, first-time deployment is done like this:
 
-```fab server_prerequisites
+```
+fab server_prerequisites
 fab web_create_site
-fab web_release```
+fab web_release
+```
 
 Subsequent deployments will just use:
 
